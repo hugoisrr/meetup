@@ -5,7 +5,7 @@ import cors from 'cors';
 
 import userRoutes from './routes/user';
 import authRoutes from './routes/auth';
-// import meetupRoutes from './routes/meetup';
+import meetupRoutes from './routes/meetup';
 
 const app = express();
 
@@ -21,6 +21,6 @@ app.use(json());
 // Routes
 app.use('/api', userRoutes);
 app.use('/api', authRoutes);
-// app.use('/api', meetupRoutes);
+app.use('/api', meetupRoutes);
 
 export default app;

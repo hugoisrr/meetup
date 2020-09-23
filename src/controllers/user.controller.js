@@ -3,6 +3,7 @@
 import { validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+
 import User from '../models/User';
 // import MeetUp from '../models/MeetUp';
 
@@ -54,7 +55,9 @@ export async function createUser(req, res) {
 
 export async function showListUser(req, res) {
   try {
-    const usersList = await User.find().sort({ createdAt: -1 });
+    const usersList = await User.find()
+      .sort({ createdAt: -1 })
+      .select('-password');
     return res.json(usersList);
   } catch (err) {
     console.error(err.message);

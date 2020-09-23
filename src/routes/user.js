@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { check } from 'express-validator';
 
-import { createUser } from '../controllers/user.controller';
+import { createUser, showListUser } from '../controllers/user.controller';
 
 const router = Router();
 
@@ -19,8 +19,7 @@ router
       check('userRole', 'User role is required.').notEmpty(),
     ],
     createUser
-  );
-
-// router.route('/user/:id');
+  )
+  .get(showListUser);
 
 export default router;

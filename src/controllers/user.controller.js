@@ -51,3 +51,13 @@ export async function createUser(req, res) {
     return res.status(500).json(err);
   }
 }
+
+export async function showListUser(req, res) {
+  try {
+    const usersList = await User.find().sort({ createdAt: -1 });
+    return res.json(usersList);
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).send('Server Error');
+  }
+}

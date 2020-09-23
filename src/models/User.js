@@ -36,12 +36,6 @@ const userSchema = new Schema(
       type: Boolean,
       default: true,
     },
-    meetUps: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'MeetUp',
-      },
-    ],
   },
   {
     timestamps: true,

@@ -17,6 +17,11 @@ const meetUpSchema = new Schema(
     status: {
       type: String,
       enum: ['draft', 'release', 'done'],
+      default: 'draft',
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
     },
     startTime: Date,

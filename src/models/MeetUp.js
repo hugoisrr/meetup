@@ -16,7 +16,7 @@ const meetUpSchema = new Schema(
     },
     status: {
       type: String,
-      enum: ['draft', 'released', 'done'],
+      enum: ['draft', 'released'],
       default: 'draft',
     },
     user: {

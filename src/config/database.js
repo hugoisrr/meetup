@@ -2,8 +2,7 @@ import { connect } from 'mongoose';
 
 const connectDB = async () => {
   try {
-    // await connect(process.env.MONGODB_URI || 'mongodb://localhost/voftest', {
-    await connect('mongodb://localhost/voftest', {
+    await connect(process.env.MONGODB_URI || 'mongodb://localhost/meetup', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,

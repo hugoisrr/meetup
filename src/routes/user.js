@@ -2,7 +2,13 @@ import { Router } from 'express';
 import { check } from 'express-validator';
 import auth from '../middleware/auth';
 
-import { createUser, showListUsers } from '../controllers/user.controller';
+import {
+  createUser,
+  showListUsers,
+  updateUserById,
+  updateNotifications,
+  updateStatusById,
+} from '../controllers/user.controller';
 
 const router = Router();
 
@@ -24,6 +30,12 @@ router
     ],
     createUser
   )
-  .get(auth, showListUsers);
+  .get(auth, showListUsers)
+  .patch(auth, updateNotifications);
+
+router
+  .route('/user/:id')
+  .put(auth, updateUserById)
+  .patch(auth, updateStatusById);
 
 export default router;

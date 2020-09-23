@@ -16,6 +16,18 @@ export async function getMeetUpsByUser(req, res) {
   }
 }
 
+export async function getReleasedMeetUps(req, res) {
+  try {
+    const releasedMeetUps = await MeetUp.find({ status: 'released' }).sort({
+      createdAt: -1,
+    });
+    res.json(releasedMeetUps);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+}
+
 export async function createMeetUp(req, res) {
   const errors = validationResult(req);
 

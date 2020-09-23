@@ -18,6 +18,11 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    password: {
+      type: String,
+      required: true,
+      min: 6,
+    },
     userRole: {
       type: String,
       enum: ['admin', 'general'],

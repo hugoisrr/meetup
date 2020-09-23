@@ -34,3 +34,6 @@ client/coverage
 
 # production
 client/build%  
+
+# environment variables
+.env

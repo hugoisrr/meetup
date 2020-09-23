@@ -5,10 +5,14 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import User from '../models/User';
-// import MeetUp from '../models/MeetUp';
 
 export async function createUser(req, res) {
   // Validation
+  const loggedUser = await User.findById(req.user.id);
+  if (loggedUser.userRole !== 'admin') {
+    return res.status(401).json({ msg: 'Not authorized' });
+  }
+
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -53,8 +57,12 @@ export async function createUser(req, res) {
   }
 }
 
-export async function showListUser(req, res) {
+export async function showListUsers(req, res) {
   try {
+    const loggedUser = await User.findById(req.user.id);
+    if (loggedUser.userRole !== 'admin') {
+      return res.status(401).json({ msg: 'Not authorized' });
+    }
     const usersList = await User.find()
       .sort({ createdAt: -1 })
       .select('-password');

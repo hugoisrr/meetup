@@ -8,6 +8,8 @@ import Sidebar from './components/layout/Sidebar'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
 
+import AuthState from './context/auth/AuthState'
+
 const App = () => {
 	//Use animation jquery methods
 	useEffect(() => {
@@ -18,26 +20,28 @@ const App = () => {
 		JqueryFunctions.smoothScrollingTop()
 	})
 	return (
-		<Router>
-			<Fragment>
-				<Switch>
-					<Route exact path='/' component={Login} />
-					<div id='wrapper'>
-						<Sidebar />
-						<div id='content-wrapper' className='d-flex flex-column'>
-							<div id='content'>
-								<Navbar />
-								<Route exact path='/dashboard' component={Dashboard} />
+		<AuthState>
+			<Router>
+				<Fragment>
+					<Switch>
+						<Route exact path='/' component={Login} />
+						<div id='wrapper'>
+							<Sidebar />
+							<div id='content-wrapper' className='d-flex flex-column'>
+								<div id='content'>
+									<Navbar />
+									<Route exact path='/dashboard' component={Dashboard} />
+								</div>
+								<Footer />
 							</div>
-							<Footer />
 						</div>
-					</div>
-				</Switch>
-				<a className='scroll-to-top rounded' href='#page-top'>
-					<i className='fas fa-angle-up'></i>
-				</a>
-			</Fragment>
-		</Router>
+					</Switch>
+					<a className='scroll-to-top rounded' href='#page-top'>
+						<i className='fas fa-angle-up'></i>
+					</a>
+				</Fragment>
+			</Router>
+		</AuthState>
 	)
 }
 

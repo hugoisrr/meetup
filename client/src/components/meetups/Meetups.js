@@ -17,7 +17,7 @@ const Meetups = () => {
 			<TransitionGroup>
 				{filtered !== null
 					? filtered.map((meetup) => (
-							<CSSTransition key={meetup.id} timeout={20} classNames='item'>
+							<CSSTransition key={meetup.id} timeout={10} classNames='item'>
 								<MeetupItem meetup={meetup} />
 							</CSSTransition>
 					  ))

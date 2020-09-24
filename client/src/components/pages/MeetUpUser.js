@@ -3,7 +3,7 @@ import MeetupFilter from '../meetups/MeetupFilter'
 import MeetupForm from '../meetups/MeetupForm'
 import Meetups from '../meetups/Meetups'
 
-const Home = () => {
+const MeetUpUser = () => {
 	return (
 		<div className='grid-2'>
 			<div>
@@ -17,4 +17,4 @@ const Home = () => {
 	)
 }
 
-export default Home
+export default MeetUpUser

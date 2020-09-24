@@ -2,7 +2,7 @@ import $ from 'jquery'
 
 // Toggle the side navigation
 export function toogleSideNavigation() {
-	$('#sidebarToggle, #sidebarToggleTop').on('click', function(e) {
+	$('#sidebarToggle, #sidebarToggleTop').on('click', function (e) {
 		$('body').toggleClass('sidebar-toggled')
 		$('.sidebar').toggleClass('toggled')
 		if ($('.sidebar').hasClass('toggled')) {
@@ -13,7 +13,7 @@ export function toogleSideNavigation() {
 
 // Close any open menu accordions when window is resized below 768px
 export function menuAccordionsResized() {
-	$(window).resize(function() {
+	$(window).resize(function () {
 		if ($(window).width() < 768) {
 			$('.sidebar .collapse').collapse('hide')
 		}
@@ -22,7 +22,7 @@ export function menuAccordionsResized() {
 
 // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
 export function preventContentWrapper() {
-	$('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function(
+	$('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function (
 		e
 	) {
 		if ($(window).width() > 768) {
@@ -36,7 +36,7 @@ export function preventContentWrapper() {
 
 // Scroll to top button appear
 export function topButtonAppear() {
-	$(document).on('scroll', function() {
+	$(document).on('scroll', function () {
 		var scrollDistance = $(this).scrollTop()
 		if (scrollDistance > 100) {
 			$('.scroll-to-top').fadeIn()
@@ -48,7 +48,7 @@ export function topButtonAppear() {
 
 // Smooth scrolling to Top
 export function smoothScrollingTop() {
-	$(document).on('click', 'a.scroll-to-top', function(e) {
+	$(document).on('click', 'a.scroll-to-top', function (e) {
 		$('html, body').animate({ scrollTop: 0 }, 500)
 		e.preventDefault()
 	})

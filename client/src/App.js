@@ -10,6 +10,7 @@ import Navbar from './components/layout/Navbar'
 import MeetUpState from './context/meetup/MeetUpState'
 import Register from './components/pages/auth/Register'
 import Login from './components/pages/auth/Login'
+import Alerts from './components/layout/Alerts'
 
 const App = () => {
 	return (
@@ -20,6 +21,7 @@ const App = () => {
 						<Fragment>
 							<Navbar />
 							<div className='container'>
+								<Alerts />
 								<Switch>
 									<Route exact path='/' component={Register} />
 									<Route exact path='/meetup' component={MeetUpUser} />

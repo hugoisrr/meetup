@@ -9,6 +9,7 @@ import About from './components/pages/About'
 import Navbar from './components/layout/Navbar'
 import MeetUpState from './context/meetup/MeetUpState'
 import Register from './components/pages/auth/Register'
+import Login from './components/pages/auth/Login'
 
 const App = () => {
 	return (
@@ -23,6 +24,7 @@ const App = () => {
 									<Route exact path='/' component={Register} />
 									<Route exact path='/meetup' component={MeetUpUser} />
 									<Route exact path='/about' component={About} />
+									<Route exact path='/login' component={Login} />
 								</Switch>
 							</div>
 						</Fragment>

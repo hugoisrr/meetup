@@ -16,7 +16,7 @@ const UserState = (props) => {
 		users: [
 			{
 				id: 1,
-				firstName: 'Pancho',
+				firstName: 'Luis',
 				surname: 'Lopez',
 				email: 'pancho@email.com',
 				password: 'password',
@@ -34,7 +34,7 @@ const UserState = (props) => {
 			},
 			{
 				id: 3,
-				firstName: 'Lupita',
+				firstName: 'Maria',
 				surname: 'Lopez',
 				email: 'lupita@email.com',
 				password: 'password',
@@ -70,6 +70,16 @@ const UserState = (props) => {
 		dispatch({ type: UPDATE_USER, payload: user })
 	}
 
+	// Filter User
+	const filterUser = (text) => {
+		dispatch({ type: FILTER_USER, payload: text })
+	}
+
+	// Clear Filter
+	const clearFilter = () => {
+		dispatch({ type: CLEAR_USER_FILTER })
+	}
+
 	return (
 		<UserContext.Provider
 			value={{
@@ -80,6 +90,8 @@ const UserState = (props) => {
 				setCurrentUser,
 				updateUser,
 				clearCurrent,
+				filterUser,
+				clearFilter,
 			}}
 		>
 			{props.children}

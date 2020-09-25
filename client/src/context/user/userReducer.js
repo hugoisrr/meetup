@@ -31,6 +31,23 @@ export default (state, action) => {
 				...state,
 				current: null,
 			}
+		case FILTER_USER:
+			return {
+				...state,
+				filtered: state.users.filter((user) => {
+					const regex = new RegExp(`${action.payload}`, 'gi')
+					return (
+						user.firstName.match(regex) ||
+						user.surname.match(regex) ||
+						user.email.match(regex)
+					)
+				}),
+			}
+		case CLEAR_USER_FILTER:
+			return {
+				...state,
+				filtered: null,
+			}
 
 		default:
 			return state

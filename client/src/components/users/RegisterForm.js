@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import AlertContext from '../../context/alert/alertContext'
 import UserContext from '../../context/user/userContext'
 
@@ -7,7 +7,22 @@ const RegisterForm = () => {
 	const userContext = useContext(UserContext)
 
 	const { setAlert } = alertContext
-	const { createUser } = userContext
+	const { createUser, current, clearCurrent } = userContext
+
+	useEffect(() => {
+		if (current !== null) {
+			setUser(current)
+		} else {
+			setUser({
+				firstName: '',
+				surname: '',
+				email: '',
+				password: '',
+				password2: '',
+				userRole: 'general',
+			})
+		}
+	}, [userContext, current])
 
 	const [user, setUser] = useState({
 		firstName: '',
@@ -18,7 +33,15 @@ const RegisterForm = () => {
 		userRole: 'general',
 	})
 
-	const { firstName, surname, email, password, password2, userRole } = user
+	const {
+		firstName,
+		surname,
+		email,
+		password,
+		password2,
+		userRole,
+		status,
+	} = user
 
 	const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value })
 
@@ -29,20 +52,27 @@ const RegisterForm = () => {
 		} else if (password !== password2) {
 			setAlert('Passwords do not match', 'danger')
 		} else {
-			createUser({
-				firstName,
-				surname,
-				email,
-				password,
-				userRole,
-			})
+			if (current === null) {
+				createUser({
+					firstName,
+					surname,
+					email,
+					password,
+					userRole,
+				})
+			}
 		}
+	}
+
+	const clearAll = () => {
+		clearCurrent()
 	}
 
 	return (
 		<form onSubmit={onSubmit}>
 			<h2>
-				Register <span className='text-primary'>User</span>
+				{current ? 'Edit' : 'Register'}{' '}
+				<span className='text-primary'>User</span>
 			</h2>
 			<input
 				type='text'
@@ -103,11 +133,19 @@ const RegisterForm = () => {
 				onChange={onChange}
 			/>{' '}
 			Admin
+			{current && <h5>Status: {status ? 'Active' : 'Deactivated'}</h5>}
 			<input
 				type='submit'
-				value='Register'
+				value={current ? 'Update User' : 'Register User'}
 				className='btn btn-primary btn-block'
 			/>
+			{current && (
+				<div>
+					<button className='btn btn-light btn-block' onClick={clearAll}>
+						Clear
+					</button>
+				</div>
+			)}
 		</form>
 	)
 }

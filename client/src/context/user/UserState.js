@@ -51,12 +51,23 @@ const UserState = (props) => {
 	// Create User
 	const createUser = (user) => {
 		user.id = uuid()
+		user.status = true
 		dispatch({ type: CREATE_USER, payload: user })
 	}
 
 	// Set current User
 	const setCurrentUser = (user) => {
 		dispatch({ type: SET_CURRENT_USER, payload: user })
+	}
+
+	// Clear current User
+	const clearCurrent = () => {
+		dispatch({ type: CLEAR_CURRENT_USER })
+	}
+
+	// Update User
+	const updateUser = (user) => {
+		dispatch({ type: UPDATE_USER, payload: user })
 	}
 
 	return (
@@ -67,6 +78,8 @@ const UserState = (props) => {
 				filtered: state.filtered,
 				createUser,
 				setCurrentUser,
+				updateUser,
+				clearCurrent,
 			}}
 		>
 			{props.children}

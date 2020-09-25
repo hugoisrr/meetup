@@ -35,7 +35,12 @@ const UserItem = ({ user }) => {
 				)}
 			</ul>
 			<p>
-				<button className='btn btn-dark btn-sm'>Edit</button>
+				<button
+					className='btn btn-dark btn-sm'
+					onClick={() => setCurrentUser(user)}
+				>
+					Edit
+				</button>
 			</p>
 		</div>
 	)

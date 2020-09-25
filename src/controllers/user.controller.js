@@ -101,12 +101,13 @@ export async function updateUserById(req, res) {
       return res.status(401).json({ msg: 'Not authorized' });
     }
 
-    const { firstName, surname, email, userRole } = req.body;
+    const { firstName, surname, email, password, userRole } = req.body;
 
     const userFields = {};
     if (firstName) userFields.firstName = firstName;
     if (surname) userFields.surname = surname;
     if (email) userFields.email = email;
+    if (password) userFields.password = password;
     if (userRole) userFields.userRole = userRole;
 
     let user = await User.findById(req.params.id);

@@ -11,27 +11,30 @@ import MeetUpState from './context/meetup/MeetUpState'
 import Register from './components/pages/auth/Register'
 import Login from './components/pages/auth/Login'
 import Alerts from './components/layout/Alerts'
+import UserState from './context/user/UserState'
 
 const App = () => {
 	return (
 		<AuthState>
 			<AlertState>
-				<MeetUpState>
-					<Router>
-						<Fragment>
-							<Navbar />
-							<div className='container'>
-								<Alerts />
-								<Switch>
-									<Route exact path='/' component={Register} />
-									<Route exact path='/meetup' component={MeetUpUser} />
-									<Route exact path='/about' component={About} />
-									<Route exact path='/login' component={Login} />
-								</Switch>
-							</div>
-						</Fragment>
-					</Router>
-				</MeetUpState>
+				<UserState>
+					<MeetUpState>
+						<Router>
+							<Fragment>
+								<Navbar />
+								<div className='container'>
+									<Alerts />
+									<Switch>
+										<Route exact path='/' component={Register} />
+										<Route exact path='/meetup' component={MeetUpUser} />
+										<Route exact path='/about' component={About} />
+										<Route exact path='/login' component={Login} />
+									</Switch>
+								</div>
+							</Fragment>
+						</Router>
+					</MeetUpState>
+				</UserState>
 			</AlertState>
 		</AuthState>
 	)

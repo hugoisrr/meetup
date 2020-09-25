@@ -2,7 +2,6 @@
 /* eslint-disable import/prefer-default-export */
 import { validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 
 import User from '../models/User';
 
@@ -41,16 +40,9 @@ export async function createUser(req, res) {
 
     await newUser.save();
 
-    const payload = {
-      user: {
-        id: newUser.id,
-      },
-    };
-    const secret = process.env.jwtSecret;
-    jwt.sign(payload, secret, { expiresIn: 360000 }, (err, token) => {
-      if (err) throw err;
-      res.json({ token });
-    });
+    const userCreated = await User.findById(newUser.id).select('-password');
+
+    res.json(userCreated);
   } catch (err) {
     console.error(err);
     return res.status(500).json(err);

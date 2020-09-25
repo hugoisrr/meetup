@@ -14,6 +14,11 @@ export default (state, action) => {
 				...state,
 				users: [...state.users, action.payload],
 			}
+		case SET_CURRENT_USER:
+			return {
+				...state,
+				current: action.payload,
+			}
 
 		default:
 			return state

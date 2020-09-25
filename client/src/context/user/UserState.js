@@ -54,6 +54,11 @@ const UserState = (props) => {
 		dispatch({ type: CREATE_USER, payload: user })
 	}
 
+	// Set current User
+	const setCurrentUser = (user) => {
+		dispatch({ type: SET_CURRENT_USER, payload: user })
+	}
+
 	return (
 		<UserContext.Provider
 			value={{
@@ -61,6 +66,7 @@ const UserState = (props) => {
 				current: state.current,
 				filtered: state.filtered,
 				createUser,
+				setCurrentUser,
 			}}
 		>
 			{props.children}

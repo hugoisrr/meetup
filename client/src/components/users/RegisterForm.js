@@ -1,21 +1,13 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 import AlertContext from '../../context/alert/alertContext'
-import AuthContext from '../../context/auth/authContext'
+import UserContext from '../../context/user/userContext'
 
 const RegisterForm = () => {
 	const alertContext = useContext(AlertContext)
-	const authContext = useContext(AuthContext)
+	const userContext = useContext(UserContext)
 
 	const { setAlert } = alertContext
-	const { register, error, clearErrors } = authContext
-
-	useEffect(() => {
-		if (error === 'User already exists') {
-			setAlert(error, 'danger')
-			clearErrors()
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [error])
+	const { createUser } = userContext
 
 	const [user, setUser] = useState({
 		firstName: '',
@@ -37,7 +29,7 @@ const RegisterForm = () => {
 		} else if (password !== password2) {
 			setAlert('Passwords do not match', 'danger')
 		} else {
-			register({
+			createUser({
 				firstName,
 				surname,
 				email,

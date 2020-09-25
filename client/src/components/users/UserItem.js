@@ -4,7 +4,7 @@ import UserContext from '../../context/user/userContext'
 
 const UserItem = ({ user }) => {
 	const userContext = useContext(UserContext)
-	const { setCurrentUser } = useContext
+	const { setCurrentUser } = userContext
 
 	const { firstName, surname, email, userRole, status } = user
 
@@ -22,7 +22,21 @@ const UserItem = ({ user }) => {
 					{userRole.charAt(0).toUpperCase() + userRole.slice(1)}
 				</span>
 			</h3>
-			<ul className='list'>{email && <li>Email: {email}</li>}</ul>
+			<ul className='list'>
+				{email && <li>Email: {email}</li>}
+				{status ? (
+					<li>
+						Status: <span className='text-primary'>Active</span>
+					</li>
+				) : (
+					<li>
+						Status: <span className='text-danger'>Deactivated</span>
+					</li>
+				)}
+			</ul>
+			<p>
+				<button className='btn btn-dark btn-sm'>Edit</button>
+			</p>
 		</div>
 	)
 }
